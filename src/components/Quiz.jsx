@@ -1,1 +1,5 @@
-import "../styles/Quiz.css"
+import "../styles/Quiz.css";
+
+function Quiz() {
+  return <></>;
+}
