@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import HomeScreen from "./components/HomeScreen.jsx";
 
 function App() {
-  const [questionsData, setQuestionsData] = useState({});
+  // const [questionsData, setQuestionsData] = useState({});
 
   React.useEffect(() => {
     fetch(
