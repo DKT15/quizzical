@@ -1,9 +1,9 @@
 import "./App.css";
-import React, { useState } from "react";
+import React from "react";
 import HomeScreen from "./components/HomeScreen.jsx";
 
 function App() {
-  const [questionsData, setQuestionsData] = useState({});
+  const [questionsData, setQuestionsData] = React.useState({});
 
   React.useEffect(() => {
     fetch(
