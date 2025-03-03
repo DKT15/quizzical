@@ -3,7 +3,7 @@ import React from "react";
 
 //Keeping state local no need to pass props down here.
 
-function Quiz() {
+export function Quiz() {
   const [questionsData, setQuestionsData] = React.useState({});
 
   // API is outside of React, therefore useEffect is needed.
@@ -12,10 +12,16 @@ function Quiz() {
       "https://opentdb.com/api.php?amount=5&category=21&difficulty=easy&type=multiple"
     )
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => setQuestionsData(data));
   });
 
-  return <></>;
+  return (
+    <>
+      {/* testing code out */}
+      <h1>Test</h1>
+      <p>{questionsData}</p>
+    </>
+  );
 }
 
 /* 
