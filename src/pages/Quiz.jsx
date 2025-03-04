@@ -4,25 +4,30 @@ import React from "react";
 //Keeping state local no need to pass props down here.
 
 export function Quiz() {
-  const [questionsData, setQuestionsData] = React.useState({});
+  // const [questionsData, setQuestionsData] = React.useState({});
 
-  // API is outside of React, therefore useEffect is needed.
-  React.useEffect(() => {
-    fetch(
-      "https://opentdb.com/api.php?amount=5&category=21&difficulty=easy&type=multiple"
-    )
-      .then((res) => res.json())
-      .then((data) => setQuestionsData(data));
-  });
+  // // API is outside of React, therefore useEffect is needed.
+  // React.useEffect(() => {
+  //   fetch(
+  //     "https://opentdb.com/api.php?amount=5&category=21&difficulty=easy&type=multiple"
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => setQuestionsData(data));
+  // });
 
   return (
     <>
       {/* testing code out */}
       <h1>Test</h1>
-      <p>{questionsData}</p>
+      <h1>Test</h1>
+      <h1>Test</h1>
+      <h1>Test</h1>
+      <h1>Test</h1>
     </>
   );
 }
+
+export default Quiz;
 
 /* 
 
