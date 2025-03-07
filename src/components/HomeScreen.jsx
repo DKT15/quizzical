@@ -1,8 +1,7 @@
-import React from "react";
 import "../styles/HomeScreen.css";
 import { Link } from "react-router-dom";
 
-function HomeScreen() {
+export function HomeScreen() {
   return (
     <div className="home-wrapper">
       <h2 className="home-title">Quizzical</h2>
@@ -13,5 +12,3 @@ function HomeScreen() {
     </div>
   );
 }
-
-export default HomeScreen;
