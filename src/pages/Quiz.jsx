@@ -16,6 +16,9 @@ export function Quiz() {
 
   const getQuestionsData = questionsData?.map((Q) => {
     console.log(Q);
+    // Map through each question
+    // Combine the incorrect and correct answers and add to the same array
+    // With that array I will render all the answers and format them to look the same in the app.
   });
 
   // function checkAnswers() {}
