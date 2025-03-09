@@ -1,5 +1,6 @@
 import "../styles/Quiz.css";
 import React from "react";
+import { decode } from "html-entities";
 
 //Keeping state local no need to pass props down here.
 
@@ -14,11 +15,16 @@ export function Quiz() {
       .then((data) => setQuestionsData(data.results));
   }, []);
 
-  const getQuestionsData = questionsData?.map((Q) => {
-    console.log(Q);
-    // Map through each question
+  // Mapping through every question.
+  const getQuestionsData = questionsData?.map((q, index) => {
+    console.log(q);
     // Combine the incorrect and correct answers and add to the same array
     // With that array I will render all the answers and format them to look the same in the app.
+    return (
+      <span className="questions-element" key={index}>
+        <h2>{decode(q.question, { level: "html5" })}</h2>
+      </span>
+    );
   });
 
   // function checkAnswers() {}
