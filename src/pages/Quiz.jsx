@@ -19,12 +19,39 @@ export function Quiz() {
   // Mapping through questions data to have it rendered on the page.
   const getQuestionsData = questionsData?.map((q, index) => {
     console.log(q);
-    // Combine the incorrect and correct answers and add to the same array
+    // Adding the correct answer to the incorrect answers array.
+    // answers.lenth + 1 is used to make sure one of the possible random positions can be after the last element of the orignal array.
+    // Instead of using math.floor the idiom |0 is used
+    // and is equivalent to positive numbers less than 2^31.
+    const answers = q.incorrect_answers;
+    answers.splice(
+      ((answers.length + 1) * Math.random()) | 0,
+      0,
+      q.correct_answer
+    );
+
+    answers + "";
+
+    // This is an alternative way to do the above code using the Math.floor method.
+
+    // const answers = q.incorrect_answers;
+    // const n = answers.length;
+    // const randomIndex = Math.floor(Math.random() * (n + 1));
+    // answers.splice(randomIndex, 0, q.correct_answer);
+
     // With that array I will render all the answers and format them to look the same in the app.
     return (
       <span className="questions-element" key={index}>
         {/* HTML entites used here to decode some of the questions in the API. */}
         <h2>{decode(q.question, { level: "html5" })}</h2>
+        {/* Mapping through the answers to render a button for the 4 answers in the array. */}
+        <span>
+          {decode(
+            answers.map((answer) => <button>{answer}</button>),
+            { level: "html5" }
+          )}
+          <hr />
+        </span>
       </span>
     );
   });
@@ -40,7 +67,8 @@ export function Quiz() {
 }
 
 /* 
-- Create a new array with all the answers. Insert the correct answers into the incorrect answers. Insert the item into the array randomly/shuffle items in an array at random.
+
+- Style to questions page
 - When the user selects an answer highlight their option. They are allowed to change their answer but do not allow them to choose more than one answer. Use HTML form with
 radio inputs using the same name attribute to automatically only allow one selection.
 
