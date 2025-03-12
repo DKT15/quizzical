@@ -7,6 +7,7 @@ import { decode } from "html-entities";
 export function Quiz() {
   const [questionsData, setQuestionsData] = React.useState([]);
 
+  // Pull in 5 questions and options from API using a side effect as the API is outside of React.
   React.useEffect(() => {
     fetch(
       "https://opentdb.com/api.php?amount=5&category=21&difficulty=medium&type=multiple"
@@ -15,13 +16,14 @@ export function Quiz() {
       .then((data) => setQuestionsData(data.results));
   }, []);
 
-  // Mapping through every question.
+  // Mapping through questions data to have it rendered on the page.
   const getQuestionsData = questionsData?.map((q, index) => {
     console.log(q);
     // Combine the incorrect and correct answers and add to the same array
     // With that array I will render all the answers and format them to look the same in the app.
     return (
       <span className="questions-element" key={index}>
+        {/* HTML entites used here to decode some of the questions in the API. */}
         <h2>{decode(q.question, { level: "html5" })}</h2>
       </span>
     );
@@ -38,10 +40,6 @@ export function Quiz() {
 }
 
 /* 
-
-- Pull in 5 questions and options from API using a side effect as the API is outside of React.
-- Render the five questions and the multiple choice answers to the page from the data recieved from the API.
-- Use HTML entities to decode some of the test in the API. Using the decode method.
 - Create a new array with all the answers. Insert the correct answers into the incorrect answers. Insert the item into the array randomly/shuffle items in an array at random.
 - When the user selects an answer highlight their option. They are allowed to change their answer but do not allow them to choose more than one answer. Use HTML form with
 radio inputs using the same name attribute to automatically only allow one selection.
