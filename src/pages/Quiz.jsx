@@ -43,11 +43,15 @@ export function Quiz() {
     return (
       <span className="questions-element" key={index}>
         {/* HTML entites used here to decode some of the questions in the API. */}
-        <h2>{decode(q.question, { level: "html5" })}</h2>
+        <h2 className="questions-text">
+          {decode(q.question, { level: "html5" })}
+        </h2>
         {/* Mapping through the answers to render a button for the 4 answers in the array. */}
-        <span>
+        <span className="buttons-element">
           {decode(
-            answers.map((answer) => <button>{answer}</button>),
+            answers.map((answer) => (
+              <button className="answer-button">{answer}</button>
+            )),
             { level: "html5" }
           )}
           <hr />
