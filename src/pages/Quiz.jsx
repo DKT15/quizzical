@@ -1,6 +1,7 @@
 import "../styles/Quiz.css";
 import React from "react";
 import { decode } from "html-entities";
+import { Link } from "react-router-dom";
 
 //Keeping state local no need to pass props down here.
 
@@ -54,8 +55,8 @@ export function Quiz() {
             )),
             { level: "html5" }
           )}
-          <hr />
         </span>
+        <hr />
       </span>
     );
   });
@@ -64,8 +65,13 @@ export function Quiz() {
 
   return (
     <>
-      <section className="questions-data">{getQuestionsData}</section>
-      {/* <button onClick={checkAnswers}>Check answers</button> */}
+      <Link className="home-btn" to="/">
+        Back Home
+      </Link>
+      <div className="questions-wrapper">
+        <section className="questions-data">{getQuestionsData}</section>
+        {/* <button onClick={checkAnswers}>Check answers</button> */}
+      </div>
     </>
   );
 }
