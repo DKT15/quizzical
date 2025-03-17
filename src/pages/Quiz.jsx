@@ -17,6 +17,12 @@ export function Quiz() {
       .then((data) => setQuestionsData(data.results));
   }, []);
 
+  function highlightAnswer() {
+    /* Want to get the answer and highlight the answer when the user clicks on it. 
+    Only want to allow the user to select one item at a time so will track the asnwer index in the questions object.
+    */
+  }
+
   // Mapping through questions data to have it rendered on the page.
   const getQuestionsData = questionsData?.map((q, index) => {
     console.log(q);
@@ -51,7 +57,9 @@ export function Quiz() {
         <span className="buttons-element">
           {decode(
             answers.map((answer) => (
-              <button className="answer-button">{answer}</button>
+              <button onClick={highlightAnswer} className="answer-button">
+                {answer}
+              </button>
             )),
             { level: "html5" }
           )}
@@ -61,7 +69,11 @@ export function Quiz() {
     );
   });
 
-  // function checkAnswers() {}
+  function checkAnswers() {
+    /* Check if the users selected answer and the correct answer are the equal to the same value. If change the users highlighted answer to green.
+  If not change the users selected answer and highlight it red, and highlight the correct answer green. Use CLSX here.
+  */
+  }
 
   return (
     <>
@@ -78,9 +90,8 @@ export function Quiz() {
 
 /* 
 
-- Style to questions page
-- When the user selects an answer highlight their option. They are allowed to change their answer but do not allow them to choose more than one answer. Use HTML form with
-radio inputs using the same name attribute to automatically only allow one selection.
+- When the user selects an answer highlight their option. They are allowed to change their answer but do not allow them to choose more than one answer.
+by tracking the selected answer index inside each question object.
 
 - Save the users guessed answers and compare them to the correct answers in the api.
 - When the user hits the checkAnswers button allow the state to change so that if the users selection is right it highlights green 
