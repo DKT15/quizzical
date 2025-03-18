@@ -57,11 +57,14 @@ export function Quiz() {
         </h2>
         {/* Mapping through the answers to render a button for the 4 answers in the array. */}
         <span className="buttons-element">
-          {answers.map((answer, index) => (
-            <button key={index} className="answer-button">
-              {answer}
-            </button>
-          ))}
+          {decode(
+            answers.map((answer, index) => (
+              <button key={index} className="answer-button">
+                {answer}
+              </button>
+            )),
+            { level: "html5" }
+          )}
         </span>
         <hr />
       </span>
