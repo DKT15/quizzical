@@ -18,6 +18,8 @@ export function Quiz() {
   }, []);
 
   function highlightAnswer() {
+    // setQuestionsData((prevQuestion) => !prevQuestion);
+    // console.log(setQuestionsData);
     /* Want to get the answer and highlight the answer when the user clicks on it. 
     Only want to allow the user to select one item at a time so will track the asnwer index in the questions object.
     */
@@ -55,25 +57,22 @@ export function Quiz() {
         </h2>
         {/* Mapping through the answers to render a button for the 4 answers in the array. */}
         <span className="buttons-element">
-          {decode(
-            answers.map((answer) => (
-              <button onClick={highlightAnswer} className="answer-button">
-                {answer}
-              </button>
-            )),
-            { level: "html5" }
-          )}
+          {answers.map((answer, index) => (
+            <button key={index} className="answer-button">
+              {answer}
+            </button>
+          ))}
         </span>
         <hr />
       </span>
     );
   });
 
-  function checkAnswers() {
-    /* Check if the users selected answer and the correct answer are the equal to the same value. If change the users highlighted answer to green.
-  If not change the users selected answer and highlight it red, and highlight the correct answer green. Use CLSX here.
-  */
-  }
+  // function checkAnswers() {
+  //   /* Check if the users selected answer and the correct answer are the equal to the same value. If change the users highlighted answer to green.
+  // If not change the users selected answer and highlight it red, and highlight the correct answer green. Use CLSX here.
+  // */
+  // }
 
   return (
     <>
@@ -101,5 +100,7 @@ and if the user is wrong highlight their option red and the correct answer green
 - Display below the five questions, how many answers the user got correct.
 - Besides the above allow the user to hit play again and reset the state of the game. This will load new or the same questions.
 - Create a new function or variable that resets the game.
+- Make sure that elements are accessible for screenreaders 
+- Make sure the CSS follows some of the best practices.
 
 */
