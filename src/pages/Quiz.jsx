@@ -17,14 +17,6 @@ export function Quiz() {
       .then((data) => setQuestionsData(data.results));
   }, []);
 
-  function highlightAnswer() {
-    // setQuestionsData((prevQuestion) => !prevQuestion);
-    // console.log(setQuestionsData);
-    /* Want to get the answer and highlight the answer when the user clicks on it. 
-    Only want to allow the user to select one item at a time so will track the asnwer index in the questions object.
-    */
-  }
-
   // Mapping through questions data to have it rendered on the page.
   const getQuestionsData = questionsData?.map((q, index) => {
     console.log(q);
@@ -59,7 +51,11 @@ export function Quiz() {
         <span className="buttons-element">
           {decode(
             answers.map((answer, index) => (
-              <button key={index} className="answer-button">
+              <button
+                onClick={highlightAnswer()}
+                key={index}
+                className="answer-button"
+              >
                 {answer}
               </button>
             )),
