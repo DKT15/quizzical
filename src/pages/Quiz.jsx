@@ -51,13 +51,17 @@ export function Quiz() {
         <span className="buttons-element">
           {decode(
             answers.map((answer, index) => (
-              <button
-                onClick={highlightAnswer()}
-                key={index}
-                className="answer-button"
-              >
-                {answer}
-              </button>
+              <fieldset key={index}>
+                <label>
+                  <input
+                    type="radio"
+                    name="answer"
+                    className="answer-button"
+                    value={answer}
+                  />
+                  {answer}
+                </label>
+              </fieldset>
             )),
             { level: "html5" }
           )}
