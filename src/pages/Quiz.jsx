@@ -51,17 +51,12 @@ export function Quiz() {
         <span className="buttons-element">
           {decode(
             answers.map((answer, index) => (
-              <fieldset key={index}>
+              <React.Fragment className="button" key={index}>
                 <label>
-                  <input
-                    type="radio"
-                    name="answer"
-                    className="answer-button"
-                    value={answer}
-                  />
+                  <input type="radio" name="answer" value={answer} />
                   {answer}
                 </label>
-              </fieldset>
+              </React.Fragment>
             )),
             { level: "html5" }
           )}

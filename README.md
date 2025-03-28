@@ -1,5 +1,7 @@
 # Quizzical
 
+TBC
+
 Links:
 https://www.npmjs.com/package/html-entities#user-content-decodetext-options
 
