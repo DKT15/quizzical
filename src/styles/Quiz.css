@@ -61,8 +61,27 @@ label:has(input[type="radio"]:checked) {
 
 .buttons-element label:hover {
     background-color: #D6DBF5;
+    cursor: pointer;
 }
 
 hr {
     background-color: #DBDEF0;
+}
+
+/* CHECK ANSWER */
+
+.button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.check-btn {
+    color: #ffffff;
+    background-color: #4D5B9E;
+    border: none;
+    border-radius: 16px;
+    padding: 16px 24px;
+    cursor: pointer;
 }

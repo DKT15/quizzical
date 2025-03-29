@@ -51,8 +51,8 @@ export function Quiz() {
         <span className="buttons-element">
           {answers.map((answer, index) => (
             <React.Fragment key={index}>
-              <label htmlFor={index}>
-                <input id={index} type="radio" name="answer" value={answer} />
+              <label>
+                <input type="radio" name={q.question} value={answer} />
                 {answer}
               </label>
             </React.Fragment>
@@ -63,11 +63,11 @@ export function Quiz() {
     );
   });
 
-  // function checkAnswers() {
-  //   /* Check if the users selected answer and the correct answer are the equal to the same value. If change the users highlighted answer to green.
-  // If not change the users selected answer and highlight it red, and highlight the correct answer green. Use CLSX here.
-  // */
-  // }
+  function checkAnswers() {
+    /* Check if the users selected answer and the correct answer are the equal to the same value. If change the users highlighted answer to green.
+  If not change the users selected answer and highlight it red, and highlight the correct answer green. Use CLSX here.
+  */
+  }
 
   return (
     <>
@@ -76,7 +76,11 @@ export function Quiz() {
       </Link>
       <div className="questions-wrapper">
         <section className="questions-data">{getQuestionsData}</section>
-        {/* <button onClick={checkAnswers}>Check answers</button> */}
+      </div>
+      <div className="button-wrapper">
+        <button className="check-btn" onClick={checkAnswers}>
+          Check answers
+        </button>
       </div>
     </>
   );
@@ -84,8 +88,6 @@ export function Quiz() {
 
 /* 
 
-- When the user selects an answer highlight their option. They are allowed to change their answer but do not allow them to choose more than one answer.
-by tracking the selected answer index inside each question object.
 
 - Save the users guessed answers and compare them to the correct answers in the api.
 - When the user hits the checkAnswers button allow the state to change so that if the users selection is right it highlights green 
@@ -97,5 +99,7 @@ and if the user is wrong highlight their option red and the correct answer green
 - Create a new function or variable that resets the game.
 - Make sure that elements are accessible for screenreaders 
 - Make sure the CSS follows some of the best practices.
+- README
+- Check Comments
 
 */
