@@ -1,8 +1,11 @@
 .home-btn {
-    margin: 16px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin: 16px;
+    font-family: "Karla", sans-serif;
+    text-decoration: none;
+    color: #4D5B9E;
 }
 
 /* QUESTIONS SECTION */
