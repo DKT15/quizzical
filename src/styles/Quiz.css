@@ -49,18 +49,15 @@
     margin-right: 16px;
 }
 
-.buttons-element {
-    label:has(input[type="radio"]:checked) {
-        background-color: #D6DBF5;
-        border-color: #D6DBF5;
-    }
-}
-
-
-.buttons-element input[type="radio"]:checked+label {
+label:has(input[type="radio"]:checked) {
     background-color: #D6DBF5;
     border-color: #D6DBF5;
 }
+
+/* .buttons-element input[type="radio"]:checked+label {
+    background-color: #D6DBF5;
+    border-color: #D6DBF5;
+} */
 
 .buttons-element label:hover {
     background-color: #D6DBF5;

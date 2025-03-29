@@ -49,17 +49,14 @@ export function Quiz() {
         </h2>
         {/* Mapping through the answers to render a button for the 4 answers in the array. */}
         <span className="buttons-element">
-          {decode(
-            answers.map((answer, index) => (
-              <React.Fragment className="button" key={index}>
-                <label>
-                  <input type="radio" name="answer" value={answer} />
-                  {answer}
-                </label>
-              </React.Fragment>
-            )),
-            { level: "html5" }
-          )}
+          {answers.map((answer, index) => (
+            <React.Fragment key={index}>
+              <label htmlFor={index}>
+                <input id={index} type="radio" name="answer" value={answer} />
+                {answer}
+              </label>
+            </React.Fragment>
+          ))}
         </span>
         <hr />
       </span>
