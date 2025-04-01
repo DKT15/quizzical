@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 export function Quiz() {
   const [questionsData, setQuestionsData] = React.useState([]);
+  const [userGuess, setUserGuess] = React.useState("");
 
   // Pull in 5 questions and options from API using a side effect as the API is outside of React.
   React.useEffect(() => {
@@ -33,6 +34,12 @@ export function Quiz() {
 
     answers + "";
 
+    // const saveUserGuess = (event) => {
+    //   const value = event.target.value;
+    //   setUserGuess(value);
+    //   console.log(userGuess);
+    // };
+
     // This is an alternative way to do the above code using the Math.floor method.
 
     // const answers = q.incorrect_answers;
@@ -52,7 +59,12 @@ export function Quiz() {
           {answers.map((answer, index) => (
             <React.Fragment key={index}>
               <label>
-                <input type="radio" name={q.question} value={answer} />
+                <input
+                  onChange={(event) => setUserGuess(event.target.value)}
+                  type="radio"
+                  name={q.question}
+                  value={answer}
+                />
                 {answer}
               </label>
             </React.Fragment>
@@ -62,6 +74,8 @@ export function Quiz() {
       </span>
     );
   });
+
+  console.log(userGuess);
 
   function checkAnswers() {
     /* Check if the users selected answer and the correct answer are the equal to the same value. If change the users highlighted answer to green.
@@ -87,13 +101,10 @@ export function Quiz() {
 }
 
 /* 
-
-
-- Save the users guessed answers and compare them to the correct answers in the api.
+- Save the users guessed answers
 - When the user hits the checkAnswers button allow the state to change so that if the users selection is right it highlights green 
 and if the user is wrong highlight their option red and the correct answer green.
 
-- In doing this the check answers button will need to be replaced for UX.
 - Display below the five questions, how many answers the user got correct.
 - Besides the above allow the user to hit play again and reset the state of the game. This will load new or the same questions.
 - Create a new function or variable that resets the game.
