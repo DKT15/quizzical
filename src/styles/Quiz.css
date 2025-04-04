@@ -71,6 +71,16 @@ hr {
     background-color: #DBDEF0;
 }
 
+.correct {
+    background-color: #28a745;
+    color: white;
+}
+
+.wrong {
+    background-color: #dc3545;
+    color: white;
+}
+
 /* CHECK ANSWER */
 
 .button-wrapper {
@@ -80,7 +90,7 @@ hr {
     margin-top: 16px;
 }
 
-.check-btn {
+.btn-primary {
     color: #ffffff;
     background-color: #4D5B9E;
     border: none;

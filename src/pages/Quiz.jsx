@@ -2,12 +2,15 @@ import "../styles/Quiz.css";
 import { useState, useEffect, Fragment } from "react";
 import { decode } from "html-entities";
 import { Link } from "react-router-dom";
+import { clsx } from "clsx";
 
 //Keeping state local no need to pass props down here.
 
 export function Quiz() {
   const [questionsData, setQuestionsData] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState({});
+  const [isQuizOver, setIsQuizOver] = useState(false);
+  const [score, setScore] = useState(0);
 
   // Pull in 5 questions and options from API using a side effect as the API is outside of React.
   useEffect(() => {
@@ -29,24 +32,52 @@ export function Quiz() {
     }));
   };
 
+  // Setting the answer class depending on whether or not the code is right or wrong.
+  const getAnswerClass = (answer, questionIndex) => {
+    if (!isQuizOver) return ""; // Don't show colors until quiz is over
+
+    const correctAnswer = questionsData[questionIndex].correct_answer;
+    const selected = selectedAnswer[questionIndex];
+
+    console.log(selected);
+
+    // Apply class based on correctness of the answer
+    return clsx({
+      correct: selected === correctAnswer,
+      wrong: selected !== correctAnswer,
+    });
+  };
+
+  const checkAnswers = () => {
+    let newScore = 0;
+    questionsData.forEach((q, index) => {
+      if (selectedAnswer[index] === q.correct_answer) {
+        newScore++;
+      }
+    });
+    setScore(newScore);
+    setIsQuizOver(true);
+  };
+
+  const resetGame = () => {
+    setSelectedAnswer({});
+    setIsQuizOver(false);
+    setScore(0);
+    setQuestionsData();
+  };
+
   // Loading message while data is being fetched
   if (!questionsData) {
     return <p>Loading...</p>;
   }
-
   console.log(selectedAnswer);
 
   // Mapping through questions data to have it rendered on the page.
   const getQuestionsData = questionsData?.map((q, index) => {
     // Combining the correct answer and incorrect answers in an array.
-    const answers = decode([...q.incorrect_answers, q.correct_answer]);
-
-    // This is an alternative way to do the above code using the Math.floor method.
-
-    // const answers = q.incorrect_answers;
-    // const n = answers.length;
-    // const randomIndex = Math.floor(Math.random() * (n + 1));
-    // answers.splice(randomIndex, 0, q.correct_answer);
+    const answers = decode([...q.incorrect_answers, q.correct_answer], {
+      level: "html5",
+    });
 
     // With that array I will render all the answers and format them to look the same in the app.
     return (
@@ -61,11 +92,13 @@ export function Quiz() {
             <Fragment key={questionIndex}>
               <label>
                 <input
+                  className={getAnswerClass(answer, index)}
                   type="radio"
                   name={`question-${index}`}
                   value={answer}
                   onChange={(event) => handleChange(event, index)}
                   checked={selectedAnswer[index] === answer} //checks to see if the specific option has been selected by comparing with the current answer and makes sure the state is updated with only one radio button selected.
+                  disabled={isQuizOver}
                 />
                 {answer}
               </label>
@@ -77,12 +110,6 @@ export function Quiz() {
     );
   });
 
-  // function checkAnswers() {
-  //   /* Check if the users selected answer and the correct answer are the equal to the same value. If change the users highlighted answer to green.
-  // If not change the users selected answer and highlight it red, and highlight the correct answer green. Use CLSX here.
-  // */
-  // }
-
   return (
     <>
       <Link className="home-btn" to="/">
@@ -91,17 +118,20 @@ export function Quiz() {
       <div className="questions-wrapper">
         <section className="questions-data">{getQuestionsData}</section>
       </div>
+      <h1>{isQuizOver && `You scored ${score}/5`}</h1>
       <div className="button-wrapper">
-        {/* <button className="btn-primary" onClick={isGameOver ? resetGame : checkAnswers}>
-          {isGameOver ? "Play again" : "Check answers"}
-        </button> */}
+        <button
+          className="btn-primary"
+          onClick={isQuizOver ? resetGame : checkAnswers}
+        >
+          {isQuizOver ? "Play again" : "Check answers"}
+        </button>
       </div>
     </>
   );
 }
 
 /* 
-- Save the users guessed answers
 - When the user hits the checkAnswers button allow the state to change so that if the users selection is right it highlights green 
 and if the user is wrong highlight their option red and the correct answer green.
 
@@ -112,6 +142,7 @@ and if the user is wrong highlight their option red and the correct answer green
 
 - Make sure that elements are accessible for screenreaders 
 - Make sure the CSS follows some of the best practices.
+- Fix loading CSS
 - README
 - Check Comments
 
