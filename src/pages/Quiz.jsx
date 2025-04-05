@@ -12,14 +12,20 @@ export function Quiz() {
   const [isQuizOver, setIsQuizOver] = useState(false);
   const [score, setScore] = useState(0);
 
-  // Pull in 5 questions and options from API using a side effect as the API is outside of React.
-  useEffect(() => {
+  // Pull in 5 questions and options from API
+  const fetchQuestions = () => {
     fetch(
       "https://opentdb.com/api.php?amount=5&category=21&difficulty=medium&type=multiple"
     )
       .then((res) => res.json())
       .then((data) => setQuestionsData(data.results))
       .catch((error) => console.error("Error fetching data", error));
+  };
+
+  // Using a side effect as the API is outside of React.
+  // function above is used here.
+  useEffect(() => {
+    fetchQuestions();
   }, []);
 
   // Updating the answer for the current question. Whenever change happens in the code,
@@ -48,6 +54,10 @@ export function Quiz() {
     });
   };
 
+  // Checking the answers here by using a ForEach method to map through each question through
+  // the questionsData to compare the selectedAnswer by its index and the correct answer from the questionsData.
+  // If true and values are the same a point is added to the score.
+  // Once the checkAnswers button is selected, the quiz is over.
   const checkAnswers = () => {
     let newScore = 0;
     questionsData.forEach((q, index) => {
@@ -59,11 +69,12 @@ export function Quiz() {
     setIsQuizOver(true);
   };
 
+  // Resetting the game once the quiz is over by resetting the selected answers, score, quizOver state and fetching new questions and answers from the api.
   const resetGame = () => {
     setSelectedAnswer({});
     setIsQuizOver(false);
     setScore(0);
-    setQuestionsData();
+    fetchQuestions();
   };
 
   // Loading message while data is being fetched
@@ -75,9 +86,10 @@ export function Quiz() {
   // Mapping through questions data to have it rendered on the page.
   const getQuestionsData = questionsData?.map((q, index) => {
     // Combining the correct answer and incorrect answers in an array.
-    const answers = decode([...q.incorrect_answers, q.correct_answer], {
-      level: "html5",
-    });
+    // And mapping through each individual answer for it to be decoded as the decode method only accepts a string but not an array.
+    const answers = [...q.incorrect_answers, q.correct_answer].map((a) =>
+      decode(a, { level: "html5" })
+    );
 
     // With that array I will render all the answers and format them to look the same in the app.
     return (
@@ -98,7 +110,7 @@ export function Quiz() {
                   value={answer}
                   onChange={(event) => handleChange(event, index)}
                   checked={selectedAnswer[index] === answer} //checks to see if the specific option has been selected by comparing with the current answer and makes sure the state is updated with only one radio button selected.
-                  disabled={isQuizOver}
+                  disabled={isQuizOver} // buttons are disabled once the quiz is over.
                 />
                 {answer}
               </label>
@@ -118,12 +130,15 @@ export function Quiz() {
       <div className="questions-wrapper">
         <section className="questions-data">{getQuestionsData}</section>
       </div>
-      <h1>{isQuizOver && `You scored ${score}/5`}</h1>
+      <p>{isQuizOver && `You scored ${score}/5 correct answers`}</p>{" "}
+      {/* Displays the score once the quiz is over.*/}
       <div className="button-wrapper">
         <button
           className="btn-primary"
           onClick={isQuizOver ? resetGame : checkAnswers}
         >
+          {" "}
+          {/* Will display the button depending on the state of the game.*/}
           {isQuizOver ? "Play again" : "Check answers"}
         </button>
       </div>
@@ -134,11 +149,6 @@ export function Quiz() {
 /* 
 - When the user hits the checkAnswers button allow the state to change so that if the users selection is right it highlights green 
 and if the user is wrong highlight their option red and the correct answer green.
-
-- Display below the five questions, how many answers the user got correct.
-- Besides the above allow the user to hit play again and reset the state of the game. This will load new or the same questions.
-- Create a new function or variable that resets the game.
-
 
 - Make sure that elements are accessible for screenreaders 
 - Make sure the CSS follows some of the best practices.
