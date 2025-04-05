@@ -38,19 +38,22 @@ export function Quiz() {
     }));
   };
 
-  // Setting the answer class depending on whether or not the code is right or wrong.
-  const getAnswerClass = (answer, questionIndex) => {
-    if (!isQuizOver) return ""; // Don't show colors until quiz is over
+  // All the questions are answered when the answers index through 0-4 are selected.
+  // This will be used below to stop users from checking answers until they have answered all the questions.
+  const allAnswered = [0, 1, 2, 3, 4].every((i) => selectedAnswer[i]);
 
+  // This code will only be excuted when the quiz is over.
+  const getAnswerClass = (answer, questionIndex) => {
+    if (!isQuizOver) return "";
+
+    // Getting the correct answer and selected answer to help with the clsx below.
     const correctAnswer = questionsData[questionIndex].correct_answer;
     const selected = selectedAnswer[questionIndex];
 
-    console.log(selected);
-
-    // Apply class based on correctness of the answer
     return clsx({
-      correct: selected === correctAnswer,
-      wrong: selected !== correctAnswer,
+      correct: answer === correctAnswer, // right answer will be highlighted green
+      wrong: answer === selected && selected !== correctAnswer, // wrong answer will be red
+      faded: answer !== selected && answer !== correctAnswer, // will fade unselected answers
     });
   };
 
@@ -102,9 +105,8 @@ export function Quiz() {
         <span className="buttons-element">
           {answers.map((answer, questionIndex) => (
             <Fragment key={questionIndex}>
-              <label>
+              <label className={getAnswerClass(answer, index)}>
                 <input
-                  className={getAnswerClass(answer, index)}
                   type="radio"
                   name={`question-${index}`}
                   value={answer}
@@ -136,6 +138,7 @@ export function Quiz() {
         <button
           className="btn-primary"
           onClick={isQuizOver ? resetGame : checkAnswers}
+          disabled={!isQuizOver && !allAnswered}
         >
           {" "}
           {/* Will display the button depending on the state of the game.*/}
@@ -147,12 +150,10 @@ export function Quiz() {
 }
 
 /* 
-- When the user hits the checkAnswers button allow the state to change so that if the users selection is right it highlights green 
-and if the user is wrong highlight their option red and the correct answer green.
 
-- Make sure that elements are accessible for screenreaders 
 - Make sure the CSS follows some of the best practices.
 - Fix loading CSS
+- Fix score CSS
 - README
 - Check Comments
 

@@ -71,14 +71,25 @@ hr {
     background-color: #DBDEF0;
 }
 
-.correct {
-    background-color: #28a745;
+label.correct {
+    background-color: #28a745 !important;
     color: white;
+    border: 2px solid #28a745 !important;
+    pointer-events: none;
 }
 
-.wrong {
-    background-color: #dc3545;
+label.wrong {
+    background-color: #dc3545 !important;
+    border: 2px solid #dc3545 !important;
     color: white;
+    pointer-events: none;
+}
+
+label.faded {
+    opacity: 0.3;
+    /* Faded effect for unselected answers */
+    pointer-events: none;
+    /* Prevent interaction with faded answers */
 }
 
 /* CHECK ANSWER */
