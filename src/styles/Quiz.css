@@ -8,6 +8,11 @@
     color: #4D5B9E;
 }
 
+.loading {
+    color: #4D5B9E;
+    text-align: center;
+}
+
 /* QUESTIONS SECTION */
 
 .questions-wrapper {

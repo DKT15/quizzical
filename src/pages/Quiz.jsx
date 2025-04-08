@@ -82,7 +82,7 @@ export function Quiz() {
 
   // Loading message while data is being fetched
   if (!questionsData) {
-    return <p>Loading...</p>;
+    return <p className="loading">Loading...</p>;
   }
   console.log(selectedAnswer);
 
@@ -132,7 +132,7 @@ export function Quiz() {
       <div className="questions-wrapper">
         <section className="questions-data">{getQuestionsData}</section>
       </div>
-      <p>{isQuizOver && `You scored ${score}/5 correct answers`}</p>{" "}
+      <p>{isQuizOver && `You scored ${score}/5 correct answers`}</p>
       {/* Displays the score once the quiz is over.*/}
       <div className="button-wrapper">
         <button
@@ -140,7 +140,6 @@ export function Quiz() {
           onClick={isQuizOver ? resetGame : checkAnswers}
           disabled={!isQuizOver && !allAnswered}
         >
-          {" "}
           {/* Will display the button depending on the state of the game.*/}
           {isQuizOver ? "Play again" : "Check answers"}
         </button>
@@ -152,7 +151,6 @@ export function Quiz() {
 /* 
 
 - Make sure the CSS follows some of the best practices.
-- Fix loading CSS
 - Fix score CSS
 - README
 - Check Comments
