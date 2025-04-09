@@ -13,6 +13,15 @@
     text-align: center;
 }
 
+p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Karla", sans-serif;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
 /* QUESTIONS SECTION */
 
 .questions-wrapper {
@@ -96,7 +105,6 @@ label.faded {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 16px;
 }
 
 .btn-primary {
@@ -106,4 +114,11 @@ label.faded {
     border-radius: 16px;
     padding: 16px 24px;
     cursor: pointer;
+}
+
+.score-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 16px;
 }

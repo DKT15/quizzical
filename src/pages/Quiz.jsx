@@ -132,17 +132,19 @@ export function Quiz() {
       <div className="questions-wrapper">
         <section className="questions-data">{getQuestionsData}</section>
       </div>
-      <p>{isQuizOver && `You scored ${score}/5 correct answers`}</p>
-      {/* Displays the score once the quiz is over.*/}
-      <div className="button-wrapper">
-        <button
-          className="btn-primary"
-          onClick={isQuizOver ? resetGame : checkAnswers}
-          disabled={!isQuizOver && !allAnswered}
-        >
-          {/* Will display the button depending on the state of the game.*/}
-          {isQuizOver ? "Play again" : "Check answers"}
-        </button>
+      <div className="score-section">
+        <p>{isQuizOver && `You scored ${score}/5 correct answers`}</p>
+        {/* Displays the score once the quiz is over.*/}
+        <div className="button-wrapper">
+          <button
+            className="btn-primary"
+            onClick={isQuizOver ? resetGame : checkAnswers}
+            disabled={!isQuizOver && !allAnswered}
+          >
+            {/* Will display the button depending on the state of the game.*/}
+            {isQuizOver ? "Play again" : "Check answers"}
+          </button>
+        </div>
       </div>
     </>
   );
@@ -152,6 +154,5 @@ export function Quiz() {
 
 - Make sure the CSS follows some of the best practices.
 - Fix score CSS
-- README
 
 */
