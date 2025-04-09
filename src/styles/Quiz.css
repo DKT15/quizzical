@@ -62,11 +62,6 @@ label:has(input[type="radio"]:checked) {
     border-color: #D6DBF5;
 }
 
-/* .buttons-element input[type="radio"]:checked+label {
-    background-color: #D6DBF5;
-    border-color: #D6DBF5;
-} */
-
 .buttons-element label:hover {
     background-color: #D6DBF5;
     cursor: pointer;
@@ -92,9 +87,7 @@ label.wrong {
 
 label.faded {
     opacity: 0.3;
-    /* Faded effect for unselected answers */
     pointer-events: none;
-    /* Prevent interaction with faded answers */
 }
 
 /* CHECK ANSWER */

@@ -29,8 +29,8 @@ export function Quiz() {
   }, []);
 
   // Updating the answer for the current question. Whenever change happens in the code,
-  // i.e. the user selects or changes their answer, the state updates with the new answer (it won't allow more than one answer per question) but makes sure
-  // it keeps the other answers as they might not change.
+  // i.e. the user selects or changes their answer, the state updates with the new answer (it won't allow more than one answer per question) but makes sure it keeps the other answers as,
+  // they might not change.
   const handleChange = (event, answerIndex) => {
     setSelectedAnswer((prev) => ({
       ...prev,
@@ -52,8 +52,8 @@ export function Quiz() {
 
     return clsx({
       correct: answer === correctAnswer, // right answer will be highlighted green
-      wrong: answer === selected && selected !== correctAnswer, // wrong answer will be red
-      faded: answer !== selected && answer !== correctAnswer, // will fade unselected answers
+      wrong: answer === selected && selected !== correctAnswer, // wrong answer will be red. If the answer is selected and it is not equal to the correct answer.
+      faded: answer !== selected && answer !== correctAnswer, // will fade unselected answers. If the answer isn't selected and isn't correct.
     });
   };
 
@@ -153,6 +153,5 @@ export function Quiz() {
 - Make sure the CSS follows some of the best practices.
 - Fix score CSS
 - README
-- Check Comments
 
 */
