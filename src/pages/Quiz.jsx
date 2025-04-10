@@ -151,8 +151,6 @@ export function Quiz() {
 }
 
 /* 
-
-- Make sure the CSS follows some of the best practices.
-- Fix score CSS
-
+- Media queries.
+- Deployment, then add link to README.
 */

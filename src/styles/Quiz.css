@@ -2,10 +2,11 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 16px;
+    margin: 1em;
     font-family: "Karla", sans-serif;
     text-decoration: none;
     color: #4D5B9E;
+    font-size: 0.75rem;
 }
 
 .loading {
@@ -18,28 +19,31 @@ p {
     flex-direction: column;
     justify-content: center;
     font-family: "Karla", sans-serif;
-    font-size: 18px;
-    margin-right: 20px;
+    font-size: 0.75rem;
+    margin-right: 1.25em;
 }
+
 
 /* QUESTIONS SECTION */
 
-.questions-wrapper {
+.questions-data {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    min-width: 400px;
-    margin-top: 16px;
+}
+
+.questions-wrapper {
+    margin-top: 1em;
 }
 
 .questions-element {
-    padding: 4px;
+    padding: 0.25em;
 }
 
 .questions-text {
     color: #293264;
     font-family: "Karla", sans-serif;
-    font-size: 16px;
+    font-size: 0.75rem;
     font-weight: 700;
 }
 
@@ -58,12 +62,12 @@ p {
     background-color: transparent;
     font-family: "Karla", sans-serif;
     color: #293264;
-    font-size: 16px;
+    font-size: 0.625rem;
     border: 2px solid #293264;
     border-radius: 16px;
-    padding: 8px 24px;
-    margin: 8px 0;
-    margin-right: 16px;
+    padding: 0.25em 1em;
+    margin: 0.5em 0;
+    margin-right: 1em;
 }
 
 label:has(input[type="radio"]:checked) {
@@ -111,8 +115,9 @@ label.faded {
     color: #ffffff;
     background-color: #4D5B9E;
     border: none;
+    font-size: 0.75rem;
     border-radius: 16px;
-    padding: 16px 24px;
+    padding: 0.75em 2em;
     cursor: pointer;
 }
 
@@ -120,5 +125,12 @@ label.faded {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 16px;
+    margin-top: 1em;
 }
+
+
+/* MEDIA QUERIES */
+
+@media only screen and (min-width: 769px) and (max-width: 1200px) {}
+
+@media only screen and (min-width: 601px) and (max-width: 768px) {}
