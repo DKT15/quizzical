@@ -151,6 +151,5 @@ export function Quiz() {
 }
 
 /* 
-- Media queries.
 - Deployment, then add link to README.
 */
