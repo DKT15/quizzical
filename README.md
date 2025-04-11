@@ -55,7 +55,7 @@ To clone down this repository. You will need node.js and git installed globally 
 
 ## Deployment
 
-The application is deployed and accessible online. Visit the live version [here]().
+The application is deployed and accessible online. Visit the live version [here](https://dkt-quizzical.netlify.app/).
 
 ## Contributing
 

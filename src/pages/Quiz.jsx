@@ -149,7 +149,3 @@ export function Quiz() {
     </>
   );
 }
-
-/* 
-- Deployment, then add link to README.
-*/
