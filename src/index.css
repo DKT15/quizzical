@@ -2,4 +2,5 @@
   box-sizing: border-box;
   height: 100vh;
   background-color: #F5F7FB;
+  min-height: 800px;
 }
