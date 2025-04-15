@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   background-color: #F5F7FB;
+  min-height: 800px;
 }
 
 body {

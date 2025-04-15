@@ -146,7 +146,6 @@ label.faded {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        max-height: 600px;
     }
 
     .home-btn {
